@@ -1,0 +1,135 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+/* ============================================================
+   Tailwind v4 — CSS-first. Os tokens viram utilitários:
+   bg-bg, bg-surface, text-ink, text-muted, text-accent,
+   font-display, font-sans, font-mono, rounded-md/lg, etc.
+   ============================================================ */
+@theme {
+  --color-bg: #15152F;
+  --color-bg-deep: #0A0A18;
+  --color-surface: #26264F;
+  --color-surface-2: #34345F;
+  --color-ink: #F2EEE1;
+  --color-muted: rgba(242, 238, 225, 0.55);
+  --color-faint: rgba(242, 238, 225, 0.32);
+  --color-accent: #2BFF88;
+  --color-accent-press: #1FB762;
+
+  --font-display: "Fraunces Variable", "Times New Roman", serif;
+  --font-sans: "Inter Variable", system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono Variable", "SFMono-Regular", ui-monospace, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background: var(--color-bg);
+  }
+  body {
+    margin: 0;
+    min-height: 100svh;
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--green-32);
+    color: var(--egg-100);
+  }
+}
+
+@layer components {
+  /* kicker editorial: mono, tracking, // como prefixo (texto já lowercase) */
+  .cap-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.14em;
+    color: var(--color-muted);
+  }
+  /* número "recibo": Geist Mono, ponto de milhar vem do formatThousands */
+  .cap-num {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+
+  /* indicador de scroll da abertura — bob calmo, sem loop infinito sob reduced-motion */
+  .cap-scroll-cue {
+    animation: capBob 2.4s var(--ease-soft) infinite;
+  }
+
+  /* botões — pílula, motion calma */
+  .cap-btn {
+    border: 1px solid transparent;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .cap-btn--primary {
+    background: var(--accent);
+    color: var(--text-on-accent);
+  }
+  .cap-btn--primary:hover:not(:disabled) {
+    background: var(--accent-press);
+    box-shadow: var(--shadow-glow);
+  }
+  .cap-btn--secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+  }
+  .cap-btn--secondary:hover:not(:disabled) {
+    background: var(--accent-tint);
+    border-color: var(--ring-faint);
+  }
+  .cap-btn--ghost {
+    background: transparent;
+    color: var(--text-secondary);
+  }
+  .cap-btn--ghost:hover:not(:disabled) {
+    color: var(--text-primary);
+  }
+  .cap-btn:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+}
+
+@keyframes capBob {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   Acessibilidade — kill-switch GLOBAL de movimento.
+   O <MotionConfig reducedMotion="user"> cobre só componentes Motion;
+   este bloco cobre keyframes CSS, transições e scroll-behavior, e o
+   SmoothScroll desmonta o Lenis sob reduced-motion.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

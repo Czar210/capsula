@@ -1,0 +1,77 @@
+/* ============================================================
+   Cápsula — tokens de marca portados do design system (_ds).
+   CORREÇÃO de fundo: --bg = #15152F. O colors.css importado usava
+   #101023 em --blueberry-900, mas o brand brief e o brief do projeto
+   mandam #15152F — este é o canônico. (var() p/ estilos inline; os
+   utilitários Tailwind vêm do @theme em index.css.)
+   ============================================================ */
+:root {
+  /* paleta crua */
+  --blueberry-950: #0A0A18;   /* poster edge / bg-deep */
+  --blueberry-900: #15152F;   /* page bg (corrigido — era #101023 no DS) */
+  --blueberry-800: #1D1D3F;   /* raised */
+  --blueberry-700: #26264F;   /* surface / cards */
+  --blueberry-600: #34345F;   /* surface hover */
+
+  --egg-white: #F2EEE1;
+  --egg-100: #FAF8F0;
+
+  --green-radio: #2BFF88;     /* THE accent — verde→ciano, nunca amarelado */
+  --green-dim: #1FB762;
+
+  /* alpha de egg-white (texto & hairlines) */
+  --egg-90: rgba(242, 238, 225, 0.90);
+  --egg-72: rgba(242, 238, 225, 0.72);
+  --egg-55: rgba(242, 238, 225, 0.55);
+  --egg-32: rgba(242, 238, 225, 0.32);
+  --egg-16: rgba(242, 238, 225, 0.16);
+  --egg-10: rgba(242, 238, 225, 0.10);
+  --egg-06: rgba(242, 238, 225, 0.06);
+
+  /* alpha do acento (anéis, glow, tint) */
+  --green-55: rgba(43, 255, 136, 0.55);
+  --green-32: rgba(43, 255, 136, 0.32);
+  --green-16: rgba(43, 255, 136, 0.16);
+  --green-08: rgba(43, 255, 136, 0.08);
+
+  /* aliases semânticos (nomes do DS p/ portar fácil) */
+  --bg: var(--blueberry-900);
+  --bg-deep: var(--blueberry-950);
+  --bg-raised: var(--blueberry-800);
+  --surface: var(--blueberry-700);
+  --surface-hover: var(--blueberry-600);
+  --text-primary: var(--egg-white);
+  --text-secondary: var(--egg-55);
+  --text-faint: var(--egg-32);
+  --text-on-accent: var(--blueberry-950);
+  --accent: var(--green-radio);
+  --accent-press: var(--green-dim);
+  --accent-tint: var(--green-16);
+  --border: var(--egg-10);
+  --border-strong: var(--egg-16);
+  --ring: var(--green-radio);
+  --ring-faint: var(--green-32);
+
+  /* radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* sombras — leves, single-layer */
+  --shadow-sm: 0 1px 2px rgba(10, 10, 24, 0.40);
+  --shadow-md: 0 6px 20px rgba(10, 10, 24, 0.45);
+  --shadow-lg: 0 18px 50px rgba(10, 10, 24, 0.55);
+  --shadow-glow: 0 0 0 1px var(--green-32), 0 0 32px var(--green-16);
+
+  /* motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 160ms;
+  --dur-base: 280ms;
+  --dur-slow: 700ms;
+
+  /* layout */
+  --gutter: clamp(1.5rem, 5vw, 6rem);
+  --max-content: 1200px;
+}

@@ -1,0 +1,61 @@
+/* ============================================================
+   COLORS — Cápsula
+   Blueberry night, egg-white light, radioactive green accent.
+   Mood: analog print at midnight. One loud accent, nothing else.
+   ============================================================ */
+
+:root {
+  /* ---- Raw palette ---- */
+  --blueberry-950: #0A0A18;   /* deepest — vignette / poster edge */
+  --blueberry-900: #101023;   /* page background */
+  --blueberry-800: #1D1D3F;   /* raised background / between sections */
+  --blueberry-700: #26264F;   /* card & surface */
+  --blueberry-600: #34345F;   /* hover surface / hairline-on-dark */
+
+  --egg-white:     #F2EEE1;   /* primary text & light */
+  --egg-100:       #FAF8F0;   /* near-white highlight */
+
+  --green-radio:   #2BFF88;   /* THE accent — green pulling to cyan, never yellow */
+  --green-dim:     #1FB762;   /* pressed / darker accent */
+  --green-glow:    #2BFF88;   /* used at low alpha for rings & glow */
+
+  /* ---- Alpha steps of egg-white (text & hairlines on dark) ---- */
+  --egg-90: rgba(242, 238, 225, 0.90);
+  --egg-72: rgba(242, 238, 225, 0.72);
+  --egg-55: rgba(242, 238, 225, 0.55);   /* secondary text */
+  --egg-32: rgba(242, 238, 225, 0.32);
+  --egg-16: rgba(242, 238, 225, 0.16);
+  --egg-10: rgba(242, 238, 225, 0.10);   /* hairline border */
+  --egg-06: rgba(242, 238, 225, 0.06);   /* faint fill */
+
+  /* ---- Alpha steps of the accent (rings, glow, tint) ---- */
+  --green-55: rgba(43, 255, 136, 0.55);
+  --green-32: rgba(43, 255, 136, 0.32);
+  --green-16: rgba(43, 255, 136, 0.16);
+  --green-08: rgba(43, 255, 136, 0.08);
+
+  /* ============================================================
+     SEMANTIC ALIASES — author against these, not the raw palette.
+     ============================================================ */
+  --bg:               var(--blueberry-900);
+  --bg-deep:          var(--blueberry-950);
+  --bg-raised:        var(--blueberry-800);
+  --surface:          var(--blueberry-700);
+  --surface-hover:    var(--blueberry-600);
+
+  --text-primary:     var(--egg-white);
+  --text-secondary:   var(--egg-55);
+  --text-faint:       var(--egg-32);
+  --text-on-accent:   var(--blueberry-950);   /* dark ink on the green */
+
+  --accent:           var(--green-radio);
+  --accent-press:     var(--green-dim);
+  --accent-tint:      var(--green-16);
+
+  --border:           var(--egg-10);          /* default hairline */
+  --border-strong:    var(--egg-16);
+  --ring:             var(--green-radio);      /* the 1px green ring motif */
+  --ring-faint:       var(--green-32);
+
+  --focus-ring:       var(--green-radio);
+}
