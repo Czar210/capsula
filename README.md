@@ -13,6 +13,8 @@
   <img alt="License" src="https://img.shields.io/badge/license-MIT-green">
 </p>
 
+### ▶ Demo ao vivo: **[capsula-app.vercel.app](https://capsula-app.vercel.app)**
+
 Conecte o Spotify (ou suba seu histórico) e reviva, num scroll vertical lento, a trilha
 sonora de quatro anos de faculdade — terminando num pôster bonito, compartilhável e
 pensado para impressão. Estética **analógica e editorial**: fundo *blueberry night*, um
