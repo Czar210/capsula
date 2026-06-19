@@ -1,0 +1,6 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "echo \"deps instaladas no buildCommand (subpasta capsula-app)\"",
+  "buildCommand": "cd capsula-app && npm ci --include=dev && npm run build",
+  "outputDirectory": "capsula-app/dist"
+}
