@@ -146,25 +146,27 @@ export function PosterCard({ innerRef }: PosterCardProps) {
         </div>
       </div>
 
-      {/* gêneros */}
-      <div
-        style={{
-          position: 'relative',
-          marginTop: u(5),
-          fontFamily: 'var(--font-display)',
-          fontStyle: 'italic',
-          fontSize: u(4.2),
-          color: 'var(--text-primary)',
-          letterSpacing: '-0.01em',
-        }}
-      >
-        {poster.genres.map((g, i) => (
-          <span key={g}>
-            {i > 0 ? <span style={{ color: 'var(--text-faint)' }}> · </span> : null}
-            {g}
-          </span>
-        ))}
-      </div>
+      {/* gêneros — omitido quando a API não devolve gêneros */}
+      {poster.genres.length > 0 ? (
+        <div
+          style={{
+            position: 'relative',
+            marginTop: u(5),
+            fontFamily: 'var(--font-display)',
+            fontStyle: 'italic',
+            fontSize: u(4.2),
+            color: 'var(--text-primary)',
+            letterSpacing: '-0.01em',
+          }}
+        >
+          {poster.genres.map((g, i) => (
+            <span key={g}>
+              {i > 0 ? <span style={{ color: 'var(--text-faint)' }}> · </span> : null}
+              {g}
+            </span>
+          ))}
+        </div>
+      ) : null}
 
       {/* assinatura */}
       <div

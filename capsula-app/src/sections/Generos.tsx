@@ -6,6 +6,30 @@ import { Section } from '../components/Section'
 // tamanho e opacidade variando pelo peso. Só o 1º (maior) é verde.
 export function Generos() {
   const capsula = useCapsula()
+
+  // Sem gêneros (a API do Spotify descontinuou o campo por artista em 2026):
+  // estado honesto em vez de inventar. No demo/mock, genres vem preenchido.
+  if (capsula.genres.length === 0) {
+    return (
+      <Section label="05 — Os gêneros">
+        <Reveal>
+          <p className="cap-eyebrow">// sua paleta sonora</p>
+        </Reveal>
+        <Reveal delay={120}>
+          <h2 className="mt-4 max-w-[20ch] font-display text-[clamp(2rem,5vw,3.5rem)] font-medium italic leading-[1.1] tracking-[-0.01em]">
+            Sua paleta ficou em segredo.
+          </h2>
+        </Reveal>
+        <Reveal delay={240}>
+          <p className="mt-6 max-w-[44ch] font-mono text-[0.875rem] leading-relaxed text-faint">
+            O Spotify parou de informar os gêneros por artista (descontinuado em 2026), então
+            não dá pra montar a paleta a partir da API.
+          </p>
+        </Reveal>
+      </Section>
+    )
+  }
+
   return (
     <Section label="05 — Os gêneros">
       <Reveal>

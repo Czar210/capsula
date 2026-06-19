@@ -38,13 +38,13 @@ export async function buildCapsulaFromApi(): Promise<CapsulaData> {
   }
   const ranked = [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 5)
   const maxCount = ranked[0]?.[1] ?? 1
+  // NÃO cair no mock: se a API não devolveu gêneros (campo deprecated em 2026),
+  // deixar vazio — a cena de gêneros mostra um estado honesto em vez de dado falso.
   const genres: Genre[] = ranked.map(([name, c], i) => ({
     name,
     weight: Math.max(0.4, c / maxCount),
     italic: i % 2 === 1,
   }))
-  const hasGenres = genres.length > 0
-  const finalGenres = hasGenres ? genres : mock.genres
 
   const artistName = topArtists[0]?.name ?? mock.artistOfPeriod.name
 
@@ -53,13 +53,13 @@ export async function buildCapsulaFromApi(): Promise<CapsulaData> {
     artistOfPeriod: { name: artistName, hours: mock.artistOfPeriod.hours }, // hours = estimativa
     topTracks: topTracks.length ? topTracks : mock.topTracks,
     topArtists: topArtists.length ? topArtists : mock.topArtists,
-    genres: finalGenres,
+    genres, // [] quando a API não dá gêneros
     totals: mock.totals, // estimativa (live não tem minutos/dias/distintos)
     evolution: mock.evolution, // estimativa (live não tem corte por ano)
     poster: {
       artist: artistName,
       minutes: mock.totals.minutes,
-      genres: finalGenres.slice(0, 3).map((g) => g.name),
+      genres: genres.slice(0, 3).map((g) => g.name),
     },
     meta: {
       source: 'live',
