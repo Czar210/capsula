@@ -1,14 +1,16 @@
 import { useCapsula } from '../data/CapsulaContext'
-import { EstimateTag } from '../components/EstimateTag'
 import { Reveal } from '../components/Reveal'
 import { Ring } from '../components/Ring'
 import { Section } from '../components/Section'
 
 // 2 · O ARTISTA DO PERÍODO — rótulo verde, nome grande em Fraunces itálico,
-// anel verde como motivo, horas em Geist Mono.
+// anel verde como motivo. As "horas" só existem com o histórico (GDPR); no modo
+// login mostramos um fato REAL ("o nº 1 de todos os tempos") em vez de número falso.
 export function ArtistaDoPeriodo() {
   const capsula = useCapsula()
   const { name, hours } = capsula.artistOfPeriod
+  const estimated = capsula.meta?.estimated.hours
+
   return (
     <Section label="02 — Artista do período">
       <Ring
@@ -26,9 +28,7 @@ export function ArtistaDoPeriodo() {
       </Reveal>
       <Reveal delay={280} className="mt-12">
         <p className="cap-num text-[0.95rem] uppercase tracking-[0.14em] text-muted">
-          {capsula.meta?.estimated.hours ? '~' : ''}
-          {hours} horas ouvidas
-          {capsula.meta?.estimated.hours ? <EstimateTag /> : null}
+          {estimated ? 'o nº 1 de todos os tempos' : `${hours} horas ouvidas`}
         </p>
       </Reveal>
     </Section>
