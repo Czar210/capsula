@@ -1,6 +1,7 @@
 import { MotionConfig } from 'motion/react'
 import { CapsulaProvider } from './data/CapsulaContext'
 import { ConnectBar } from './components/ConnectBar'
+import { Footer } from './components/Footer'
 import { Grain } from './components/Grain'
 import { ScrollProgress } from './components/ScrollProgress'
 import { SmoothScroll } from './components/SmoothScroll'
@@ -47,6 +48,7 @@ export default function App() {
             <Evolucao />
             <CartazFinal />
           </main>
+          <Footer />
         </div>
         </SmoothScroll>
       </CapsulaProvider>
