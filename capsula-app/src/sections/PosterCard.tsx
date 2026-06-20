@@ -18,6 +18,7 @@ export function PosterCard({ innerRef }: PosterCardProps) {
   const capsula = useCapsula()
   const { poster, period } = capsula
   const topTrack = capsula.topTracks[0]
+  const userName = capsula.user?.name
   // login sem histórico: omite os minutos (falsos) e mostra faixa + artista reais.
   // Os minutos voltam quando há dado real (GDPR) ou no demo.
   const estimated = capsula.meta?.estimated.totals
@@ -102,6 +103,21 @@ export function PosterCard({ innerRef }: PosterCardProps) {
           RETROSPECTIVA
         </span>
       </div>
+
+      {userName ? (
+        <div
+          style={{
+            position: 'relative',
+            marginTop: u(1.6),
+            fontFamily: 'var(--font-mono)',
+            fontSize: u(2),
+            letterSpacing: '0.08em',
+            color: 'var(--text-faint)',
+          }}
+        >
+          a retrospectiva de {userName}
+        </div>
+      ) : null}
 
       {/* artista */}
       <div style={{ position: 'relative', marginTop: 'auto' }}>

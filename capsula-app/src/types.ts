@@ -66,5 +66,7 @@ export interface CapsulaData {
   totals: Totals
   evolution: YearSnapshot[]
   poster: PosterData
+  /** nome de exibição do Spotify (só quando logado) */
+  user?: { name: string }
   meta?: CapsulaMeta
 }

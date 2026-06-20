@@ -21,13 +21,11 @@ export function ConnectBar() {
     ? `lendo ${c.uploadProgress.done}/${c.uploadProgress.total}…`
     : c.status === 'loading'
       ? 'carregando…'
-      : c.status === 'live' && c.hasGdpr
-        ? 'conectado + histórico'
-        : c.status === 'live'
-          ? 'conectado'
-          : c.hasGdpr
-            ? 'histórico carregado'
-            : 'demo'
+      : c.status === 'live'
+        ? (c.userName ?? 'conectado') + (c.hasGdpr ? ' · histórico' : '')
+        : c.hasGdpr
+          ? 'histórico carregado'
+          : 'demo'
 
   const liveOrLoading = c.status === 'live' || c.status === 'loading'
   const active = c.status === 'live' || c.hasGdpr

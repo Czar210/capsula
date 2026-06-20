@@ -28,6 +28,7 @@ interface Controller {
   busy: boolean
   uploadProgress: IngestProgress | null
   hasGdpr: boolean
+  userName: string | null
   login: () => void
   logout: () => void
   uploadGdpr: (files: File[]) => Promise<void>
@@ -127,12 +128,24 @@ export function CapsulaProvider({ children }: { children: ReactNode }) {
       busy,
       uploadProgress,
       hasGdpr: data.meta?.source === 'gdpr' || data.meta?.source === 'live+gdpr',
+      userName: data.user?.name ?? null,
       login,
       logout,
       uploadGdpr,
       dismissError,
     }),
-    [status, error, busy, uploadProgress, data.meta?.source, login, logout, uploadGdpr, dismissError],
+    [
+      status,
+      error,
+      busy,
+      uploadProgress,
+      data.meta?.source,
+      data.user?.name,
+      login,
+      logout,
+      uploadGdpr,
+      dismissError,
+    ],
   )
 
   return (

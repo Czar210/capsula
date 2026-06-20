@@ -13,16 +13,22 @@ interface SpArtist {
 interface TopResp<T> {
   items: T[]
 }
+interface SpUser {
+  display_name: string | null
+  id: string
+}
 
 // Monta o MESMO CapsulaData a partir dos endpoints reais. O que a API ao vivo
 // NÃO dá (minutos/dias/distintos, per-ano) fica como estimativa (vinda do mock)
 // e marcado em meta.estimated — destravado depois pelo upload GDPR.
 export async function buildCapsulaFromApi(): Promise<CapsulaData> {
-  const [tracksResp, artistsResp, artists50] = await Promise.all([
+  const [tracksResp, artistsResp, artists50, me] = await Promise.all([
     apiGet<TopResp<SpTrack>>('/me/top/tracks?limit=5&time_range=long_term'),
     apiGet<TopResp<SpArtist>>('/me/top/artists?limit=5&time_range=long_term'),
     apiGet<TopResp<SpArtist>>('/me/top/artists?limit=50&time_range=long_term'),
+    apiGet<SpUser>('/me').catch(() => null), // perfil é opcional: falha não quebra a retrospectiva
   ])
+  const userName = me?.display_name || me?.id || 'você'
 
   const topTracks: Track[] = tracksResp.items.map((t, i) => ({
     rank: i + 1,
@@ -61,6 +67,7 @@ export async function buildCapsulaFromApi(): Promise<CapsulaData> {
       minutes: mock.totals.minutes,
       genres: genres.slice(0, 3).map((g) => g.name),
     },
+    user: { name: userName },
     meta: {
       source: 'live',
       rangeLabel: 'all-time',
