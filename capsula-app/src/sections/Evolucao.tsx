@@ -2,9 +2,9 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
 import { useCapsula } from '../data/CapsulaContext'
 import type { Year } from '../types'
+import { HistoryUnlock } from '../components/HistoryUnlock'
 import { Reveal } from '../components/Reveal'
 import { Section } from '../components/Section'
-import { UploadHistoryButton } from '../components/UploadHistoryButton'
 import { YearTabs } from '../components/YearTabs'
 
 function YearCell({
@@ -43,7 +43,7 @@ function YearCell({
 }
 
 // 7 · A EVOLUÇÃO — corte por ano NÃO existe na API ao vivo. No modo login,
-// estado honesto + CTA pra subir o histórico (que destrava a evolução real).
+// guia "destrave com o histórico" em vez dos anos do mock.
 export function Evolucao() {
   const capsula = useCapsula()
   const years = capsula.evolution
@@ -57,20 +57,7 @@ export function Evolucao() {
         <Reveal>
           <p className="cap-eyebrow">// como meu gosto mudou</p>
         </Reveal>
-        <Reveal delay={120}>
-          <h2 className="mt-4 max-w-[18ch] font-display text-[clamp(2.25rem,5vw,4rem)] font-medium italic leading-[1.05] tracking-[-0.01em]">
-            Sua linha do tempo precisa do histórico.
-          </h2>
-        </Reveal>
-        <Reveal delay={240}>
-          <p className="mt-6 max-w-[46ch] font-mono text-[0.875rem] leading-relaxed text-faint">
-            A evolução ano a ano (2023 – 2026) não existe na API ao vivo do Spotify. Suba seu
-            “Extended streaming history” pra montar a sua.
-          </p>
-        </Reveal>
-        <Reveal delay={360} className="mt-8">
-          <UploadHistoryButton />
-        </Reveal>
+        <HistoryUnlock title="Sua linha do tempo precisa do histórico." />
       </Section>
     )
   }
