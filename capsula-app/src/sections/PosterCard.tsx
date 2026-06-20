@@ -17,6 +17,10 @@ const u = (n: number) => `calc(var(--u) * ${n})`
 export function PosterCard({ innerRef }: PosterCardProps) {
   const capsula = useCapsula()
   const { poster, period } = capsula
+  const topTrack = capsula.topTracks[0]
+  // login sem histórico: omite os minutos (falsos) e mostra faixa + artista reais.
+  // Os minutos voltam quando há dado real (GDPR) ou no demo.
+  const estimated = capsula.meta?.estimated.totals
 
   const cardStyle: CSSProperties = {
     width: u(100),
@@ -126,25 +130,58 @@ export function PosterCard({ innerRef }: PosterCardProps) {
         </h2>
       </div>
 
-      {/* número herói */}
-      <div style={{ position: 'relative', marginTop: u(6) }}>
-        <span className="cap-eyebrow" style={{ fontSize: u(2.3), letterSpacing: '0.14em' }}>
-          minutos em fones de ouvido
-        </span>
-        <div
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontWeight: 500,
-            fontSize: u(17.5),
-            lineHeight: 1,
-            letterSpacing: '-0.03em',
-            color: 'var(--accent)',
-            marginTop: u(0.5),
-          }}
-        >
-          {formatThousands(poster.minutes)}
+      {/* herói: minutos (só com histórico/demo) OU faixa + artista (login) */}
+      {estimated ? (
+        <div style={{ position: 'relative', marginTop: u(6) }}>
+          <span className="cap-eyebrow" style={{ fontSize: u(2.3), letterSpacing: '0.14em' }}>
+            a faixa do período
+          </span>
+          <div
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontStyle: 'italic',
+              fontWeight: 600,
+              fontSize: u(6.2),
+              lineHeight: 1.02,
+              letterSpacing: '-0.02em',
+              color: 'var(--accent)',
+              marginTop: u(1),
+            }}
+          >
+            {topTrack?.title ?? '—'}
+          </div>
+          <div
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: u(2.4),
+              letterSpacing: '0.04em',
+              color: 'var(--text-secondary)',
+              marginTop: u(1.2),
+            }}
+          >
+            {topTrack?.artist ?? ''}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div style={{ position: 'relative', marginTop: u(6) }}>
+          <span className="cap-eyebrow" style={{ fontSize: u(2.3), letterSpacing: '0.14em' }}>
+            minutos em fones de ouvido
+          </span>
+          <div
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontWeight: 500,
+              fontSize: u(17.5),
+              lineHeight: 1,
+              letterSpacing: '-0.03em',
+              color: 'var(--accent)',
+              marginTop: u(0.5),
+            }}
+          >
+            {formatThousands(poster.minutes)}
+          </div>
+        </div>
+      )}
 
       {/* gêneros — omitido quando a API não devolve gêneros */}
       {poster.genres.length > 0 ? (
