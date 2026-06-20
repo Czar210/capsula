@@ -35,8 +35,7 @@ export function HistoryUnlock({ title }: { title: string }) {
 
       <Reveal delay={240}>
         <p className="mt-6 max-w-[48ch] font-mono text-[0.875rem] leading-relaxed text-faint">
-          Esses números não vêm da API ao vivo do Spotify — só do seu histórico completo. Veja como
-          costuma funcionar:
+          Não dá pra puxar isso da API do Spotify. Veja como pegar o seu:
         </p>
       </Reveal>
 
@@ -58,8 +57,8 @@ export function HistoryUnlock({ title }: { title: string }) {
             “Account data”) e confirme no e-mail.
           </Step>
           <Step n={2} title="Aguarde o e-mail do Spotify">
-            Pode levar até ~30 dias (costuma vir em alguns dias). Não dá pra automatizar — o Spotify
-            não expõe o histórico por API.
+            Pode levar até ~30 dias (costuma vir em alguns dias). O Spotify não libera isso por API,
+            então não tem como ser automático.
           </Step>
           <Step n={3} title="Suba os arquivos aqui">
             Os{' '}
@@ -71,7 +70,7 @@ export function HistoryUnlock({ title }: { title: string }) {
 
       <Reveal delay={420}>
         <div className="mt-9">
-          <UploadHistoryButton label="já tenho — subir histórico" />
+          <UploadHistoryButton label="subir meu histórico" />
         </div>
       </Reveal>
     </>

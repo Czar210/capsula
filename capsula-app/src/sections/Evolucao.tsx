@@ -57,7 +57,7 @@ export function Evolucao() {
         <Reveal>
           <p className="cap-eyebrow">// como meu gosto mudou</p>
         </Reveal>
-        <HistoryUnlock title="Sua linha do tempo precisa do histórico." />
+        <HistoryUnlock title="A evolução por ano precisa do histórico." />
       </Section>
     )
   }

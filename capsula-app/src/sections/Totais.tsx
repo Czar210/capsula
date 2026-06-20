@@ -30,7 +30,7 @@ export function Totais() {
         <Reveal>
           <p className="cap-eyebrow">// os totais</p>
         </Reveal>
-        <HistoryUnlock title="Os números grandes moram no seu histórico." />
+        <HistoryUnlock title="Esses números precisam do seu histórico." />
       </Section>
     )
   }

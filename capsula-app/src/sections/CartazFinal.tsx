@@ -31,7 +31,7 @@ export function CartazFinal() {
       const blob = await exportPosterToBlob(posterRef.current)
       if (!blob) throw new Error('no-blob')
       triggerDownload(blob)
-      setNote('Pronto — imagem salva.')
+      setNote('Pronto, imagem salva.')
     } catch {
       setNote('Não foi possível gerar. Tente novamente.')
     } finally {
@@ -56,7 +56,7 @@ export function CartazFinal() {
         setNote('Compartilhado.')
       } else {
         triggerDownload(blob)
-        setNote('Compartilhamento indisponível — imagem baixada.')
+        setNote('Compartilhamento indisponível. Baixei a imagem.')
       }
     } catch (e) {
       setNote(e instanceof Error && e.name === 'AbortError' ? DEFAULT_NOTE : 'Não foi possível compartilhar.')

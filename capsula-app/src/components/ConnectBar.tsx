@@ -106,7 +106,7 @@ export function ConnectBar() {
             border: '1px solid var(--border-strong)',
           }}
         >
-          {c.error} <span className="text-faint">— fechar</span>
+          {c.error} <span className="text-faint">(fechar)</span>
         </button>
       ) : null}
     </div>

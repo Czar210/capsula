@@ -19,8 +19,8 @@ export function Generos() {
       }))
 
   const subtitle = hasGenres
-    ? 'Sua paleta sonora — os tons que se misturaram nesses anos.'
-    : 'As vozes que pintaram esses anos — sua paleta em nomes.'
+    ? 'Os tons que se misturaram nesses anos.'
+    : 'As vozes que pintaram esses anos.'
 
   return (
     <Section label="05 — Os gêneros">

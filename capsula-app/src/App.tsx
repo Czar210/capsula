@@ -8,7 +8,6 @@ import { SmoothScroll } from './components/SmoothScroll'
 import { Abertura } from './sections/Abertura'
 import { ArtistaDoPeriodo } from './sections/ArtistaDoPeriodo'
 import { TopMusicas } from './sections/TopMusicas'
-import { TopArtistas } from './sections/TopArtistas'
 import { Generos } from './sections/Generos'
 import { Totais } from './sections/Totais'
 import { Evolucao } from './sections/Evolucao'
@@ -42,7 +41,6 @@ export default function App() {
             <Abertura />
             <ArtistaDoPeriodo />
             <TopMusicas />
-            <TopArtistas />
             <Generos />
             <Totais />
             <Evolucao />
